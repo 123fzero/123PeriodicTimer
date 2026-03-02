@@ -1,4 +1,4 @@
-# PeriodicTimer — Repeating Interval Timer for Flipper Zero
+# 123PeriodicTimer — Repeating Interval Timer for Flipper Zero
 
 Set any interval from 1 second to 59:59 — the timer repeats at your chosen interval until you stop it, alerting you with a beep and vibration each time.
 
