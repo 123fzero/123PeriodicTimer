@@ -25,13 +25,12 @@ bool periodic_timer_scene_main_on_event(void* context, SceneManagerEvent event) 
 
     if(event.type == SceneManagerEventTypeCustom) {
         switch(event.event) {
-        case PeriodicTimerCustomEventStart:
-            {
-                uint32_t total = periodic_timer_interval_total(&app->settings);
-                if(total > 0) {
-                    scene_manager_next_scene(app->scene_manager, PeriodicTimerSceneTimer);
-                }
+        case PeriodicTimerCustomEventStart: {
+            uint32_t total = periodic_timer_interval_total(&app->settings);
+            if(total > 0) {
+                scene_manager_next_scene(app->scene_manager, PeriodicTimerSceneTimer);
             }
+        }
             consumed = true;
             break;
         case PeriodicTimerCustomEventSettings:

@@ -56,8 +56,7 @@ static bool timer_main_view_input(InputEvent* event, void* context) {
 
     // Long press Back opens settings
     if(event->key == InputKeyBack && event->type == InputTypeLong) {
-        view_dispatcher_send_custom_event(
-            app->view_dispatcher, PeriodicTimerCustomEventSettings);
+        view_dispatcher_send_custom_event(app->view_dispatcher, PeriodicTimerCustomEventSettings);
         return true;
     }
 
@@ -76,8 +75,7 @@ static bool timer_main_view_input(InputEvent* event, void* context) {
             },
             false);
         periodic_timer_settings_save(&app->settings);
-        view_dispatcher_send_custom_event(
-            app->view_dispatcher, PeriodicTimerCustomEventStart);
+        view_dispatcher_send_custom_event(app->view_dispatcher, PeriodicTimerCustomEventStart);
         return true;
     }
 

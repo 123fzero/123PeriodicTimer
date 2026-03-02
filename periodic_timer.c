@@ -30,14 +30,12 @@ static PeriodicTimerApp* periodic_timer_alloc(void) {
     // Main view (interval picker)
     app->main_view = timer_main_view_alloc();
     view_set_context(app->main_view, app);
-    view_dispatcher_add_view(
-        app->view_dispatcher, PeriodicTimerViewMain, app->main_view);
+    view_dispatcher_add_view(app->view_dispatcher, PeriodicTimerViewMain, app->main_view);
 
     // Timer session view
     app->timer_view = timer_session_view_alloc();
     view_set_context(app->timer_view, app);
-    view_dispatcher_add_view(
-        app->view_dispatcher, PeriodicTimerViewTimer, app->timer_view);
+    view_dispatcher_add_view(app->view_dispatcher, PeriodicTimerViewTimer, app->timer_view);
 
     // Settings (VariableItemList)
     app->variable_item_list = variable_item_list_alloc();

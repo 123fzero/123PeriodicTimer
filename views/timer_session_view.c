@@ -82,8 +82,7 @@ static void timer_session_view_draw(Canvas* canvas, void* model) {
     elements_frame(canvas, bar_x, bar_y, bar_w, bar_h);
     if(m->interval_total > 0) {
         uint32_t elapsed_in_interval = m->interval_total - m->seconds_remaining;
-        uint8_t fill_w =
-            (uint8_t)(elapsed_in_interval * (bar_w - 2) / m->interval_total);
+        uint8_t fill_w = (uint8_t)(elapsed_in_interval * (bar_w - 2) / m->interval_total);
         if(fill_w > 0) {
             canvas_draw_box(canvas, bar_x + 1, bar_y + 1, fill_w, bar_h - 2);
         }
@@ -130,18 +129,15 @@ static bool timer_session_view_input(InputEvent* event, void* context) {
                 if(event->key == InputKeyUp) {
                     m->display_mode = (m->display_mode + 1) % PeriodicTimerDisplayCount;
                 } else {
-                    m->display_mode =
-                        (m->display_mode + PeriodicTimerDisplayCount - 1) %
-                        PeriodicTimerDisplayCount;
+                    m->display_mode = (m->display_mode + PeriodicTimerDisplayCount - 1) %
+                                      PeriodicTimerDisplayCount;
                 }
             },
             true);
         with_view_model(
             app->timer_view,
             TimerSessionModel * m,
-            {
-                app->settings.display_mode = m->display_mode;
-            },
+            { app->settings.display_mode = m->display_mode; },
             false);
         periodic_timer_settings_save(&app->settings);
         return true;
