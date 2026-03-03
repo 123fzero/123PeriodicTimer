@@ -1,22 +1,44 @@
 #include "../periodic_timer_app.h"
-#include "../views/timer_main_view.h"
 #include "periodic_timer_scene.h"
+
+enum {
+    PeriodicTimerMainMenuIndexStartTimer = PeriodicTimerCustomEventOpenConfig,
+    PeriodicTimerMainMenuIndexSettings = PeriodicTimerCustomEventOpenSettings,
+    PeriodicTimerMainMenuIndexAbout = PeriodicTimerCustomEventOpenAbout,
+};
+
+static void periodic_timer_scene_main_menu_callback(void* context, uint32_t index) {
+    PeriodicTimerApp* app = context;
+    view_dispatcher_send_custom_event(app->view_dispatcher, index);
+}
 
 void periodic_timer_scene_main_on_enter(void* context) {
     PeriodicTimerApp* app = context;
 
-    // Initialize main view model from settings
-    with_view_model(
-        app->main_view,
-        TimerMainModel * m,
-        {
-            m->minutes = app->settings.interval_min;
-            m->seconds = app->settings.interval_sec;
-            m->selected_field = TimerMainFieldSeconds;
-        },
-        true);
-
-    view_dispatcher_switch_to_view(app->view_dispatcher, PeriodicTimerViewMain);
+    submenu_reset(app->submenu);
+    submenu_set_header(app->submenu, "123PeriodicTimer");
+    submenu_add_item(
+        app->submenu,
+        "Start Timer",
+        PeriodicTimerMainMenuIndexStartTimer,
+        periodic_timer_scene_main_menu_callback,
+        app);
+    submenu_add_item(
+        app->submenu,
+        "Settings",
+        PeriodicTimerMainMenuIndexSettings,
+        periodic_timer_scene_main_menu_callback,
+        app);
+    submenu_add_item(
+        app->submenu,
+        "About",
+        PeriodicTimerMainMenuIndexAbout,
+        periodic_timer_scene_main_menu_callback,
+        app);
+    submenu_set_selected_item(
+        app->submenu,
+        scene_manager_get_scene_state(app->scene_manager, PeriodicTimerSceneMainMenu));
+    view_dispatcher_switch_to_view(app->view_dispatcher, PeriodicTimerViewSubmenu);
 }
 
 bool periodic_timer_scene_main_on_event(void* context, SceneManagerEvent event) {
@@ -24,17 +46,18 @@ bool periodic_timer_scene_main_on_event(void* context, SceneManagerEvent event) 
     bool consumed = false;
 
     if(event.type == SceneManagerEventTypeCustom) {
+        scene_manager_set_scene_state(app->scene_manager, PeriodicTimerSceneMainMenu, event.event);
         switch(event.event) {
-        case PeriodicTimerCustomEventStart: {
-            uint32_t total = periodic_timer_interval_total(&app->settings);
-            if(total > 0) {
-                scene_manager_next_scene(app->scene_manager, PeriodicTimerSceneTimer);
-            }
-        }
+        case PeriodicTimerCustomEventOpenConfig:
+            scene_manager_next_scene(app->scene_manager, PeriodicTimerSceneConfig);
             consumed = true;
             break;
-        case PeriodicTimerCustomEventSettings:
+        case PeriodicTimerCustomEventOpenSettings:
             scene_manager_next_scene(app->scene_manager, PeriodicTimerSceneSettings);
+            consumed = true;
+            break;
+        case PeriodicTimerCustomEventOpenAbout:
+            scene_manager_next_scene(app->scene_manager, PeriodicTimerSceneAbout);
             consumed = true;
             break;
         }
@@ -48,5 +71,6 @@ bool periodic_timer_scene_main_on_event(void* context, SceneManagerEvent event) 
 }
 
 void periodic_timer_scene_main_on_exit(void* context) {
-    UNUSED(context);
+    PeriodicTimerApp* app = context;
+    submenu_reset(app->submenu);
 }

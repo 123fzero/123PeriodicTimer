@@ -1,4 +1,4 @@
-# PeriodicTimer — Flipper Zero App
+# 123PeriodicTimer — Flipper Zero App
 
 Repeating interval timer inspired by the iOS app "Periodic Timer".
 

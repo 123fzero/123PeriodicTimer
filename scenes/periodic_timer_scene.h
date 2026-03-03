@@ -3,15 +3,19 @@
 #include <gui/scene_manager.h>
 
 typedef enum {
-    PeriodicTimerSceneMain,
-    PeriodicTimerSceneTimer,
+    PeriodicTimerSceneMainMenu,
+    PeriodicTimerSceneConfig,
     PeriodicTimerSceneSettings,
+    PeriodicTimerSceneTimer,
+    PeriodicTimerSceneAbout,
     PeriodicTimerSceneCount,
 } PeriodicTimerScene;
 
 typedef enum {
-    PeriodicTimerCustomEventStart,
-    PeriodicTimerCustomEventSettings,
+    PeriodicTimerCustomEventOpenConfig,
+    PeriodicTimerCustomEventOpenSettings,
+    PeriodicTimerCustomEventOpenAbout,
+    PeriodicTimerCustomEventStartTimer,
     PeriodicTimerCustomEventTimerTick,
 } PeriodicTimerCustomEvent;
 

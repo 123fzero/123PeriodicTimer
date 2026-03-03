@@ -1,10 +1,20 @@
 # 123PeriodicTimer — Repeating Interval Timer for Flipper Zero
 
-Set any interval from 1 second to 59:59 — the timer repeats at your chosen interval until you stop it, alerting you with a beep and vibration each time.
+123PeriodicTimer is a Flipper Zero repeating interval timer and recurring reminder app. Set any interval from 1 second to 59:59, then let the timer repeat continuously until you stop it, with beep and vibration alerts at every cycle.
+
+If you are looking for a Flipper Zero interval timer, Flipper Zero repeating timer, Flipper Zero recurring alarm, or a simple Flipper Zero productivity timer for workouts, study sessions, breathing, cooking, or Pomodoro-style pacing, this app is built for that exact use case.
 
 ## Why?
 
-Sometimes you need a simple repeating timer: time-boxing tasks, pacing activities, cooking intervals, meditation, or anything that needs a periodic reminder. PeriodicTimer does one thing well — beeps at your interval, forever, until you stop it.
+Sometimes you need a simple repeating timer: time-boxing tasks, pacing activities, cooking intervals, meditation, or anything that needs a periodic reminder. 123PeriodicTimer does one thing well — beeps at your interval, forever, until you stop it.
+
+## Best For
+
+- **HIIT and workout intervals** on Flipper Zero
+- **Pomodoro-style focus sessions** with repeating reminders
+- **Breathing and meditation pacing** with gentle periodic alerts
+- **Cooking and kitchen timing** when you need a recurring beep
+- **General recurring reminders** for any short repeated task
 
 ## Features
 
@@ -18,11 +28,19 @@ Sometimes you need a simple repeating timer: time-boxing tasks, pacing activitie
 - **Persistent settings** — saved to SD card, remembered between launches
 - **Backlight stays on** during active timer
 
+## Common Use Cases
+
+- Repeating work / break prompts
+- Exercise rounds and recovery intervals
+- Stretch, hydration, and posture reminders
+- Tea, coffee, and kitchen countdown loops
+- Habit-building routines that need a simple recurring alert
+
 ## Screenshots
 
 ```
 ┌────────────────────────────┐   ┌────────────────────────────┐
-│      Periodic Timer        │   │ Vibration         < Short >│
+│     123PeriodicTimer       │   │ Vibration         < Short >│
 │                            │   │ Sound                < On >│
 │       [00] : [30]          │   │ Display Mode  < Countdown >│
 │        min   sec           │   │                            │
@@ -33,7 +51,7 @@ Sometimes you need a simple repeating timer: time-boxing tasks, pacing activitie
          Main Screen                       Settings
 
 ┌────────────────────────────┐   ┌────────────────────────────┐
-│ Periodic Timer     00:30   │   │ Periodic Timer     00:30   │
+│123PeriodicTimer    00:30   │   │123PeriodicTimer    00:30   │
 │                            │   │                            │
 │           18               │   │           5                │
 │                            │   │                            │
@@ -44,7 +62,7 @@ Sometimes you need a simple repeating timer: time-boxing tasks, pacing activitie
      Timer: Countdown Mode           Timer: Intervals Mode
 
 ┌────────────────────────────┐   ┌────────────────────────────┐
-│ Periodic Timer     00:30   │   │ Periodic Timer     00:30   │
+│123PeriodicTimer    00:30   │   │123PeriodicTimer    00:30   │
 │                            │   │                            │
 │         2:30               │   │         PAUSED             │
 │                            │   │                            │
@@ -61,7 +79,7 @@ Sometimes you need a simple repeating timer: time-boxing tasks, pacing activitie
 
 1. Download `periodic_timer.fap` from [Releases](../../releases)
 2. Copy to your Flipper Zero SD card: `SD Card/apps/Tools/`
-3. Open on Flipper: `Applications → Tools → PeriodicTimer`
+3. Open on Flipper: `Applications → Tools → 123PeriodicTimer`
 
 ### Build from source
 
@@ -80,7 +98,7 @@ ufbt launch
 
 ## Usage
 
-1. Open PeriodicTimer from Applications → Tools
+1. Open 123PeriodicTimer from Applications → Tools
 2. Set the interval using **Up/Down** (change value) and **Left/Right** (switch min/sec)
 3. Press **OK** to start the timer
 4. Flipper alerts you on each interval with beep and vibration
@@ -113,6 +131,10 @@ ufbt launch
 - **Hardware:** Flipper Zero (f7)
 
 Should also work on official firmware and other custom firmwares (Unleashed, RogueMaster, Xtreme) with compatible API versions.
+
+## SEO Keywords
+
+Flipper Zero timer, Flipper Zero interval timer, Flipper Zero repeating timer, Flipper Zero recurring reminder, Flipper Zero productivity app, Flipper Zero workout timer, Flipper Zero HIIT timer, Flipper Zero Pomodoro timer, Flipper Zero meditation timer, Flipper Zero cooking timer, periodic timer for Flipper Zero, recurring alarm for Flipper Zero.
 
 ## License
 

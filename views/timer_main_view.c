@@ -10,7 +10,7 @@ static void timer_main_view_draw(Canvas* canvas, void* model) {
 
     // Title
     canvas_set_font(canvas, FontPrimary);
-    canvas_draw_str_aligned(canvas, 64, 10, AlignCenter, AlignBottom, "Periodic Timer");
+    canvas_draw_str_aligned(canvas, 64, 10, AlignCenter, AlignBottom, "123PeriodicTimer");
 
     // Interval display: MM : SS
     char min_buf[4];
@@ -47,18 +47,12 @@ static void timer_main_view_draw(Canvas* canvas, void* model) {
 
     // Bottom hints
     canvas_set_font(canvas, FontSecondary);
-    canvas_draw_str(canvas, 2, 62, "[Settings]");
-    canvas_draw_str_aligned(canvas, 126, 62, AlignRight, AlignBottom, "[Start >]");
+    canvas_draw_str(canvas, 2, 62, "[<] Back");
+    canvas_draw_str_aligned(canvas, 126, 62, AlignRight, AlignBottom, "[OK] Start");
 }
 
 static bool timer_main_view_input(InputEvent* event, void* context) {
     PeriodicTimerApp* app = context;
-
-    // Long press Back opens settings
-    if(event->key == InputKeyBack && event->type == InputTypeLong) {
-        view_dispatcher_send_custom_event(app->view_dispatcher, PeriodicTimerCustomEventSettings);
-        return true;
-    }
 
     if(event->type != InputTypeShort && event->type != InputTypeRepeat) {
         return false;
@@ -75,7 +69,7 @@ static bool timer_main_view_input(InputEvent* event, void* context) {
             },
             false);
         periodic_timer_settings_save(&app->settings);
-        view_dispatcher_send_custom_event(app->view_dispatcher, PeriodicTimerCustomEventStart);
+        view_dispatcher_send_custom_event(app->view_dispatcher, PeriodicTimerCustomEventStartTimer);
         return true;
     }
 

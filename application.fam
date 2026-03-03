@@ -1,13 +1,13 @@
 App(
     appid="periodic_timer",
-    name="PeriodicTimer",
+    name="123PeriodicTimer",
     apptype=FlipperAppType.EXTERNAL,
     entry_point="periodic_timer_app",
     stack_size=2 * 1024,
-    fap_version=(1, 0),
+    fap_version=(1, 1),
     fap_icon="icon.png",
     fap_category="Tools",
-    fap_description="Repeating interval timer with vibration and sound alerts",
+    fap_description="Flipper Zero repeating interval timer with recurring alerts",
     fap_author="@colinfrl",
     requires=[
         "gui",

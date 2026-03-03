@@ -99,7 +99,7 @@ bool periodic_timer_scene_timer_on_event(void* context, SceneManagerEvent event)
             furi_timer_stop(app->timer);
         }
         scene_manager_search_and_switch_to_previous_scene(
-            app->scene_manager, PeriodicTimerSceneMain);
+            app->scene_manager, PeriodicTimerSceneConfig);
         consumed = true;
     }
 

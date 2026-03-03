@@ -8,9 +8,9 @@ static void timer_session_view_draw(Canvas* canvas, void* model) {
     TimerSessionModel* m = model;
     canvas_clear(canvas);
 
-    // Header: "Periodic Timer" left, interval right
+    // Header: "123PeriodicTimer" left, interval right
     canvas_set_font(canvas, FontSecondary);
-    canvas_draw_str(canvas, 2, 10, "Periodic Timer");
+    canvas_draw_str(canvas, 2, 10, "123PeriodicTimer");
 
     char interval_buf[16];
     uint32_t iv_min = m->interval_total / 60;

@@ -1,5 +1,6 @@
 #include "periodic_timer_app.h"
 #include "scenes/periodic_timer_scene.h"
+#include <gui/modules/submenu.h>
 #include "views/timer_main_view.h"
 #include "views/timer_session_view.h"
 
@@ -27,15 +28,15 @@ static PeriodicTimerApp* periodic_timer_alloc(void) {
     view_dispatcher_set_navigation_event_callback(
         app->view_dispatcher, periodic_timer_back_event_callback);
 
-    // Main view (interval picker)
+    // Main menu
+    app->submenu = submenu_alloc();
+    view_dispatcher_add_view(
+        app->view_dispatcher, PeriodicTimerViewSubmenu, submenu_get_view(app->submenu));
+
+    // Timer config view (interval picker)
     app->main_view = timer_main_view_alloc();
     view_set_context(app->main_view, app);
     view_dispatcher_add_view(app->view_dispatcher, PeriodicTimerViewMain, app->main_view);
-
-    // Timer session view
-    app->timer_view = timer_session_view_alloc();
-    view_set_context(app->timer_view, app);
-    view_dispatcher_add_view(app->view_dispatcher, PeriodicTimerViewTimer, app->timer_view);
 
     // Settings (VariableItemList)
     app->variable_item_list = variable_item_list_alloc();
@@ -43,6 +44,16 @@ static PeriodicTimerApp* periodic_timer_alloc(void) {
         app->view_dispatcher,
         PeriodicTimerViewSettings,
         variable_item_list_get_view(app->variable_item_list));
+
+    // Timer session view
+    app->timer_view = timer_session_view_alloc();
+    view_set_context(app->timer_view, app);
+    view_dispatcher_add_view(app->view_dispatcher, PeriodicTimerViewTimer, app->timer_view);
+
+    // Shared widget for About
+    app->widget = widget_alloc();
+    view_dispatcher_add_view(
+        app->view_dispatcher, PeriodicTimerViewWidget, widget_get_view(app->widget));
 
     app->notifications = furi_record_open(RECORD_NOTIFICATION);
     app->timer = NULL;
@@ -56,14 +67,20 @@ static void periodic_timer_free(PeriodicTimerApp* app) {
         furi_timer_free(app->timer);
     }
 
+    view_dispatcher_remove_view(app->view_dispatcher, PeriodicTimerViewSubmenu);
+    submenu_free(app->submenu);
+
     view_dispatcher_remove_view(app->view_dispatcher, PeriodicTimerViewMain);
     timer_main_view_free(app->main_view);
+
+    view_dispatcher_remove_view(app->view_dispatcher, PeriodicTimerViewSettings);
+    variable_item_list_free(app->variable_item_list);
 
     view_dispatcher_remove_view(app->view_dispatcher, PeriodicTimerViewTimer);
     timer_session_view_free(app->timer_view);
 
-    view_dispatcher_remove_view(app->view_dispatcher, PeriodicTimerViewSettings);
-    variable_item_list_free(app->variable_item_list);
+    view_dispatcher_remove_view(app->view_dispatcher, PeriodicTimerViewWidget);
+    widget_free(app->widget);
 
     scene_manager_free(app->scene_manager);
     view_dispatcher_free(app->view_dispatcher);
@@ -79,7 +96,7 @@ int32_t periodic_timer_app(void* p) {
 
     Gui* gui = furi_record_open(RECORD_GUI);
     view_dispatcher_attach_to_gui(app->view_dispatcher, gui, ViewDispatcherTypeFullscreen);
-    scene_manager_next_scene(app->scene_manager, PeriodicTimerSceneMain);
+    scene_manager_next_scene(app->scene_manager, PeriodicTimerSceneMainMenu);
     view_dispatcher_run(app->view_dispatcher);
 
     furi_record_close(RECORD_GUI);
