@@ -40,37 +40,38 @@ Sometimes you need a simple repeating timer: time-boxing tasks, pacing activitie
 
 ```
 ┌────────────────────────────┐   ┌────────────────────────────┐
-│     123PeriodicTimer       │   │ Vibration         < Short >│
-│                            │   │ Sound                < On >│
-│       [00] : [30]          │   │ Display Mode  < Countdown >│
-│        min   sec           │   │                            │
+│      123PeriodicTimer      │   │      123PeriodicTimer      │
 │                            │   │                            │
-│ [Settings]       [Start >] │   │                            │
+│  > Start Timer             │   │       [00] : [30]          │
+│    Settings                │   │        min   sec           │
+│    About                   │   │                            │
+│                            │   │                            │
+│                            │   │ [<] Back       [OK] Start  │
 │                            │   │                            │
 └────────────────────────────┘   └────────────────────────────┘
-         Main Screen                       Settings
+          Main Menu                   Timer Setup
+
+┌────────────────────────────┐   ┌────────────────────────────┐
+│ Vibration         < Short >│   │123PeriodicTimer    00:30   │
+│ Sound                < On >│   │                            │
+│ Display Mode  < Countdown >│   │           18               │
+│                            │   │                            │
+│                            │   │       countdown            │
+│                            │   │    [███████░░░░░░░]        │
+│                            │   │ [OK]=Pause    [<]=Stop     │
+└────────────────────────────┘   └────────────────────────────┘
+            Settings                Timer: Countdown Mode
 
 ┌────────────────────────────┐   ┌────────────────────────────┐
 │123PeriodicTimer    00:30   │   │123PeriodicTimer    00:30   │
 │                            │   │                            │
-│           18               │   │           5                │
+│           5                │   │         PAUSED             │
 │                            │   │                            │
-│       countdown            │   │        intervals           │
-│    [███████░░░░░░░]        │   │    [███████░░░░░░░]        │
-│ [OK]=Pause    [<]=Stop     │   │ [OK]=Pause    [<]=Stop     │
-└────────────────────────────┘   └────────────────────────────┘
-     Timer: Countdown Mode           Timer: Intervals Mode
-
-┌────────────────────────────┐   ┌────────────────────────────┐
-│123PeriodicTimer    00:30   │   │123PeriodicTimer    00:30   │
-│                            │   │                            │
-│         2:30               │   │         PAUSED             │
-│                            │   │                            │
-│       total time           │   │                            │
+│        intervals           │   │                            │
 │    [███████░░░░░░░]        │   │    [███████░░░░░░░]        │
 │ [OK]=Pause    [<]=Stop     │   │ [OK]=Resume   [<]=Stop     │
 └────────────────────────────┘   └────────────────────────────┘
-    Timer: Total Time Mode            Timer: Paused
+     Timer: Intervals Mode            Timer: Paused
 ```
 
 ## Install
@@ -99,30 +100,45 @@ ufbt launch
 ## Usage
 
 1. Open 123PeriodicTimer from Applications → Tools
-2. Set the interval using **Up/Down** (change value) and **Left/Right** (switch min/sec)
-3. Press **OK** to start the timer
-4. Flipper alerts you on each interval with beep and vibration
-5. Press **OK** to pause/resume, **Back** to stop
-6. Long-press **Back** on main screen for **Settings** (vibration, sound, display mode)
-7. Use **Up/Down** during timer to switch display mode
+2. Select **Start Timer** from the main menu
+3. Set the interval using **Up/Down** (change value) and **Left/Right** (switch min/sec)
+4. Press **OK** to start the timer
+5. Flipper alerts you on each interval with beep and vibration
+6. Press **OK** to pause/resume, **Back** to stop
+7. Open **Settings** from the main menu for vibration, sound, and default display mode
+8. Open **About** from the main menu for version and repository info
+9. Use **Up/Down** during timer to switch display mode
 
 ## Controls
 
-### Main Screen
+### Main Menu
+| Button | Action |
+|--------|--------|
+| Up/Down | Move between menu items |
+| OK | Open selected item |
+| Back | Exit app |
+
+### Timer Setup
 | Button | Action |
 |--------|--------|
 | Up/Down | Change minutes or seconds value |
 | Left/Right | Switch between minutes and seconds |
 | OK | Start timer |
-| Back (long) | Open settings |
-| Back (short) | Exit app |
+| Back | Return to main menu |
+
+### Settings Screen
+| Button | Action |
+|--------|--------|
+| Up/Down | Select setting |
+| Left/Right | Change value |
+| Back | Return to main menu |
 
 ### Timer Screen
 | Button | Action |
 |--------|--------|
 | OK | Pause / Resume |
 | Up/Down | Switch display mode |
-| Back | Stop timer, return to main |
+| Back | Stop timer, return to timer setup |
 
 ## Tested On
 
