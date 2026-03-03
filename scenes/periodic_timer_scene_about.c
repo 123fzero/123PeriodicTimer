@@ -11,7 +11,7 @@ void periodic_timer_scene_about_on_enter(void* context) {
         0,
         128,
         64,
-        "123PeriodicTimer v1.1.0\n"
+        "123PeriodicTimer v1.1.1\n"
         "Flipper Zero repeating\n"
         "interval timer\n\n"
         "Recurring alerts for\n"
